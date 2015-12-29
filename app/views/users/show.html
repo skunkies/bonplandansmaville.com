@@ -1,0 +1,8 @@
+{% extends '../layouts/default.html' %}
+
+{% block main %}
+    <h1>Name: {{ user.name }}</h1>
+    <h3>Username: {{ user.username }}</h3>
+    <h3>Email: {{ user.email }}</h3>
+    <h3>Provider: {{ user.provider }}</h3>
+{% endblock %}
