@@ -28,16 +28,20 @@ exports.load = function (req, res, next, id){
  */
 
 exports.index = function (req, res){
+  var criteria = { user: req.user._id };
   var page = (req.params.page > 0 ? req.params.page : 1) - 1;
   var perPage = 30;
   var options = {
     perPage: perPage,
-    page: page
+    page: page,
+    criteria: criteria
   };
 
   Article.list(options, function (err, articles) {
     if (err) return res.render('500');
-    Article.count().exec(function (err, count) {
+
+    Article.count(criteria).exec(function (err, count) {
+      console.log("criteria", criteria, "count - " , count);
       res.render('articles/index', {
         icon: 'fa fa-ticket',
         title: 'Mes bons plans',
