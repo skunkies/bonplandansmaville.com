@@ -25,7 +25,9 @@ exports.index = function (req, res) {
     Article.count(criteria).exec(function (err, count) {
         console.log("nb article", count);
       res.render('articles/index', {
-        title: 'Articles tagged ' + req.params.tag ,
+        icon:'fa fa-tag',
+        title: 'Bons plans pour la catégorie ' ,
+        param: req.params.tag,
         articles: articles,
         page: page + 1,
         pages: Math.ceil(count / perPage)

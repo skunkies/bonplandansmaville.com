@@ -23,10 +23,11 @@ exports.index = function (req, res) {
   Article.list(options, function(err, articles) {
     if (err) return res.render('500');
     Article.count(criteria).exec(function (err, count) {
-        console.log("nb article", count);
-      res.render('articles/index', {
+      console.log("criteria", criteria, "count - " , count);
+      res.render('articles/list', {
         icon: 'fa fa-map-marker',
-        title: 'Bons plans pour la région ' + req.params.region ,
+        title: 'Bons plans pour la région ' ,
+        param: req.params.region,
         articles: articles,
         page: page + 1,
         pages: Math.ceil(count / perPage)
