@@ -28,7 +28,7 @@ exports.load = function (req, res, next, id){
  */
 
 exports.index = function (req, res){
-  var criteria = { user: req.user._id };
+  var criteria = { user: req.user.id };
   var page = (req.params.page > 0 ? req.params.page : 1) - 1;
   var perPage = 30;
   var options = {
@@ -39,10 +39,9 @@ exports.index = function (req, res){
 
   Article.list(options, function (err, articles) {
     if (err) return res.render('500');
-
     Article.count(criteria).exec(function (err, count) {
-      console.log("criteria", criteria, "count - " , count);
-      res.render('articles/index', {
+      console.info("GA ----------------------------------- criteria", criteria, "count - " , count);
+      res.render('articles/myarticles', {
         icon: 'fa fa-ticket',
         title: 'Mes bons plans',
         articles: articles,
@@ -74,7 +73,7 @@ exports.create = function (req, res) {
   var images = req.files.image
     ? [req.files.image]
     : undefined;
-  console.log("images upload", images);
+
   article.user = req.user;
   article.uploadAndSave(images, function (err) {
     if(err) console.log(err);
@@ -113,6 +112,8 @@ exports.update = function (req, res){
 
   // make sure no one changes the user
   delete req.body.user;
+  console.log(req.body);
+
   article = extend(article, req.body);
 
   article.uploadAndSave(images, function (err) {

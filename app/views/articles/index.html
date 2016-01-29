@@ -1,15 +1,24 @@
 {% extends '../layouts/default.html' %}
 
 {% block main %}
-  <h1><i class="{{ icon }}"></i> {{ title }}</h1>
+  <h1><i class="{{ icon }}"></i> {{ title }} XXX<span style="color:blue">{{ param }}</span></h1>
+{% endblock %}
+
+{% block aside %}
+    {% include 'aside.html' %}
+{% endblock %}
+
+{% block weekly %}
+    {% include 'weekly.html' %}
 {% endblock %}
 
 {% block content %}
   {% if (articles.length) %}
+<div class="row row-wrap">
     {% for article in articles %}
       {% include 'article.html' %}
     {% endfor %}
-
+</div>
     {% if (pages > 1) %}
       <ul class="pagination">
         {% autoescape false %}

@@ -23,6 +23,7 @@ module.exports = new GoogleStrategy({
     };
     User.load(options, function (err, user) {
       if (err) return done(err);
+      console.log("profile : ", profile);
       if (!user) {
         user = new User({
           name: profile.displayName,

@@ -37,6 +37,7 @@ exports.article = {
   }
 }
 
+
 /**
  * Comment authorization routing middleware
  */

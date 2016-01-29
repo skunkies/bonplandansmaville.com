@@ -1,7 +1,5 @@
 {% extends 'layouts/default.html' %}
 
-
-
 {% block main %}
 <h2>Bienvenue sur bonplandansmaville.com</h2>
 <div class="row">
@@ -13,7 +11,7 @@
             <span style="color: rgb(0, 229, 188); font-size: 29px; position: absolute; left: 390.234px; top: 90.26px;">
                 <a href="/region/ile-de-france">Picardie</a>
             </span>
-            <span style="color: rgb(0, 94, 219); font-size: 26px; position: absolute; left: 120.234px; top: 100.26px;">
+            <span style="color: rgb(0, 94, 219); font-size: 26px; position: absolute; left: 120.234px; top: 95.26px;">
                 <a href="/region/ile-de-france">Haute-Normandie</a>
             </span>
             <span style="color: rgb(68, 0, 210); font-size: 29px; position: absolute; left: 100.449px; top: 140.562px;">
@@ -31,7 +29,7 @@
             <span style="color: rgb(0, 180, 224); font-size: 23px; position: absolute; left: 402.617px; top: 215.241px;">
                 <a href="/region/ile-de-france">Champagne-Ardenne</a>
             </span>
-            <span style="color: rgb(68, 0, 210); font-size: 29px; position: absolute; left: 315.64px; top: 246.075px;">
+            <span style="color: rgb(68, 0, 210); font-size: 32px; position: absolute; left: 315.64px; top: 246.075px;">
                 <a href="/region/ile-de-france">Centre</a>
             </span>
             <span style="color: rgb(0, 94, 219); font-size: 26px; position: absolute; left: 452.233px; top: 245.677px;">
@@ -50,7 +48,7 @@
                 <a href="/region/ile-de-france">Franche-Comté</a>
             </span>
             <span style="color: rgb(143, 0, 205); font-size: 23px; position: absolute; left: 619.79px; top: 155.782px;">
-                <a href="/annonces/dev">Alsace</a>
+                <a href="/region/alsace">Alsace</a>
             </span>
             <span style="color: rgb(0, 229, 188); font-size: 27px; position: absolute; left: 126.441px; top: 380.598px;">
                 <a href="/region/ile-de-france">Aquitaine</a>
@@ -67,10 +65,10 @@
             <span style="color: rgb(0, 180, 224); font-size: 23px; position: absolute; left: 301.658px; top: 337.057px;">
                 <a href="/region/ile-de-france">Limousin</a>
             </span>
-            <span style="color: rgb(0, 180, 224); font-size: 23px; position: absolute; left: 303.42px; top: 475.177px;">
+            <span style="color: rgb(0, 180, 224); font-size: 29px; position: absolute; left: 303.42px; top: 475.177px;">
                 <a href="/region/ile-de-france">Languedoc-Roussillon</a>
             </span>
-            <span style="color: rgb(0, 94, 219); font-size: 26px; position: absolute; left: 591.026px; top: 499.43px;">
+            <span style="color: rgb(0, 94, 219); font-size: 26px; position: absolute; left: 605.026px; top: 509.43px;">
                 <a href="/region/ile-de-france">Corse</a>
             </span>
         </div>
@@ -78,7 +76,7 @@
     <div class="col-md-4">
         <div class="panel panel-primary">
             <div class="panel-heading"><h2 class="panel-title">A vos marques, prêt, <span style="color: mediumvioletred;text-transform: uppercase;">économisez !</span></h2></div>
-                <div class="panel-body">Etant tous à la recherche du bon plan dans notre ville <a href="/">bonplandansmaville.com</a> vous permet de trouver les bon plans proposés pas vos vendeurs préférés. <p>Cliquez sur la région de votre choix et
+                <div class="panel-body">Etant tous à la recherche du bon plan dans notre ville <a href="/">bonplandansmaville.com</a> vous permet de trouver les bons plans proposés pas vos vendeurs préférés. <p>Cliquez sur la région de votre choix et
                     trouvez le bon plan parmi les 25 955 349 annonces.</p>
                 </div>
         </div>
@@ -91,7 +89,7 @@
      placement: 'right',
      });
      };
-     */
+
     $(function(){
     var words = [
         {text: "Alsace", weight: 8.2, link: '/annonces/dev'},
@@ -129,16 +127,7 @@
         }
     });
 
-    });
+    });*/
 </script>
-<style>
-    .demo {
-        margin: 0 0;
-        width: 100%;
-        height: 550px;
-    }
-    .demo span { transition: all .2s ease-in-out; }
-    .demo span:hover { transform: scale(1.1); cursor: pointer; }
-    .jqcloud a, a:hover{text-decoration: none;color:inherit;}
-</style>
+
 {% endblock %}

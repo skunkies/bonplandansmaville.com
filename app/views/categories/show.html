@@ -1,0 +1,28 @@
+{% extends '../layouts/default.html' %}
+
+{% block main %}
+  <h1>{{ categorie.title }}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <p>{{ categorie.body }}</p>
+      <div class="meta">
+        <span class="muted">{{ categorie.createdAt.toISOString()|date('M d, Y  h:i a') }}</span>
+      </div>
+    </div>
+  </div>
+
+    <form action="{{ '/categories/' + categorie.id }}" method="post" onsubmit="return confirm('Are you sure?')">
+      <br>
+      <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+      <a href="{{ '/categories/' + categorie._id + '/edit' }}" title="edit" class="btn btn-default">
+        Edit
+      </a>
+      &nbsp;
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+
+{% endblock %}

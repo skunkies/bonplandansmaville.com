@@ -6,7 +6,9 @@
 var fs = require('fs');
 var env = {};
 var envFile = require('path').join(__dirname, 'env.json');
+
 console.log("envfile", envFile);
+
 // Read env.json file, if it exists, load the id's and secrets from that
 // Note that this is only in the development env
 // it is not safe to store id's in files
@@ -34,16 +36,6 @@ module.exports = {
     clientID: process.env.TWITTER_CLIENTID,
     clientSecret: process.env.TWITTER_SECRET,
     callbackURL: "http://localhost:3000/auth/twitter/callback"
-  },
-  github: {
-    clientID: process.env.GITHUB_CLIENTID,
-    clientSecret: process.env.GITHUB_SECRET,
-    callbackURL: 'http://localhost:3000/auth/github/callback'
-  },
-  linkedin: {
-    clientID: process.env.LINKEDIN_CLIENTID,
-    clientSecret: process.env.LINKEDIN_SECRET,
-    callbackURL: 'http://localhost:3000/auth/linkedin/callback'
   },
   google: {
     clientID: process.env.GOOGLE_CLIENTID,

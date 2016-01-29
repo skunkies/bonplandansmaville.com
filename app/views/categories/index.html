@@ -1,0 +1,13 @@
+{% extends '../layouts/default.html' %}
+
+{% block main %}
+  <h1><i class="{{ icon }}"></i> {{ title }} <span style="color:red">{{ param }}</span></h1>
+{% endblock %}
+
+{% block content %}
+  {% if (categories.length) %}
+    {% for categorie in categories %}
+      {% include 'categorie.html' %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

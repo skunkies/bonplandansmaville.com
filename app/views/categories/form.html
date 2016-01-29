@@ -1,0 +1,58 @@
+{% extends '../layouts/default.html' %}
+
+{% block main %}
+  <h1>{{ title }}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if categorie.isNew %}
+    {% set action = '/categories' %}
+  {% else %}
+    {% set action = '/categories/' + categorie._id %}
+  {% endif %}
+
+  <div class="row">
+
+    <div class="col-md-8">
+      <form method="post" action="{{ action }}" enctype="multipart/form-data" role="form" class="form-horizontal">
+
+        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+        {% if not categorie.isNew %}
+          <input type="hidden" name="_method" value="PUT">
+        {% endif %}
+
+        <p class="bg-info"><i class="fa fa-pencil"></i> Categorie</p>
+
+        <div class="form-group">
+          <label for="title" class="col-sm-2 control-label">Title</label>
+          <div class="col-sm-10">
+            <input type="text" name="title" value="{{ categorie.title }}" placeholder="Titre de la categorie" class="form-control" id="title">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="desc" class="col-sm-2 control-label">Body</label>
+          <div class="col-sm-10">
+            <textarea rows="5" name="body" placeholder="Enter the article description" id="desc" cols="30" class="form-control">{{ categorie.body }}</textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="faicon" class="col-sm-2 control-label">Icon</label>
+          <div class="col-sm-10">
+            <input name="faicon" placeholder="Enter the fontawsome icone ie. fa fa-tags" id="faicon" class="form-control" value="{{ categorie.faicon }}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-primary" type="submit">Validez</button>
+            &nbsp;
+            <a href="/categories" class="btn btn-link">Annuler</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

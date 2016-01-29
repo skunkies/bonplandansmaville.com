@@ -5,5 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="node-express-mongoose-demo node_modules" level="project" />
+    <orderEntry type="library" name="bonplandansmaville.com node_modules" level="project" />
   </component>
 </module>

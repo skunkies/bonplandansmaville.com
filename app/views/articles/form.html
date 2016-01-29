@@ -2,7 +2,6 @@
 
 {% block main %}
   <h1>{{ title }}</h1>
-  <hr>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +12,8 @@
   {% endif %}
 
   <div class="row">
-    <div class="col-md-8">
+
+    <div class="col-md-12">
       <form method="post" action="{{ action }}" enctype="multipart/form-data" role="form" class="form-horizontal">
 
         <input type="hidden" name="_csrf" value="{{ csrf_token }}">
@@ -21,11 +21,93 @@
         {% if not article.isNew %}
           <input type="hidden" name="_method" value="PUT">
         {% endif %}
+        <p class="bg-info"><i class="fa fa-tags"></i> Categorie</p>
+
+        <div class="col-xs-6 form-group">
+          <label>Label1</label>
+          <input class="form-control" type="text"/>
+        </div>
+        <div class="col-xs-6 form-group ml30">
+          <label>Label2</label>
+          <input class="form-control" type="text"/>
+        </div>
+
+        <div class="form-group">
+          <label for="categorie" class="col-sm-2 control-label">categorie</label>
+          <div class="col-sm-10">
+            <input type="text" id="categorie" name="categorie" class="form-control" value="{{ article.categorie }}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tags" class="col-sm-2 control-label">Catégories</label>
+          <div class="col-sm-10">
+            <input type="text" name="tags" value="{{ article.tags }}" placeholder="Enter the tags" class="form-control" id="tags">
+          </div>
+        </div>
+
+        <p class="bg-info"><i class="fa fa-map-marker"></i> Localisation</p>
+
+
+          <div class="form-group">
+            <label for="region" class="col-sm-2 control-label">Région</label>
+            <div class="col-sm-10">
+              <input type="text" id="region" name="region" class="form-control" value="{{ article.region }}">
+            </div>
+          </div>
+
+        <div class="form-group">
+          <label for="departement" class="col-sm-2 control-label">Département</label>
+          <div class="col-sm-10">
+            <input type="text" id="departement" name="departement" class="form-control" value="{{ article.departement }}">
+          </div>
+        </div>
+<!--
+        <div class="col-xs-6 form-group">
+          <label for="cp">CP</label>
+          <input type="text" id="cp" name="cp" class="form-control" value="{{ article.cp }}">
+        </div>
+
+        <div class="col-xs-6 form-group">
+          <label for="ville">Ville</label>
+          <input type="text" id="ville" name="ville" class="form-control" value="{{ article.ville }}">
+        </div>
+        -->
+
+        <div class="form-group">
+          <label for="cp" class="col-sm-2 control-label">CP</label>
+          <div class="col-sm-10">
+            <input type="text" id="cp" name="cp" class="form-control" value="{{ article.cp }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ville" class="col-sm-2 control-label">Ville</label>
+          <div class="col-sm-10">
+            <input type="text" id="ville" name="ville" class="form-control" value="{{ article.ville }}">
+          </div>
+        </div>
+
+        <p class="bg-info"><i class="fa fa-calendar"></i> Validté de l'offre</p>
+
+        <div class="form-group">
+          <label for="cp" class="col-sm-2 control-label">Date de début</label>
+          <div class="col-sm-10">
+            <input type="text" id="datedebut" name="datedebut" class="form-control" value="{{ article.datedebut.toISOString()| date('d/m/Y') }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="datefin" class="col-sm-2 control-label">Date de fin</label>
+          <div class="col-sm-10">
+            <input type="text" id="datefin" name="datefin" class="form-control" value="{{ article.datefin.toISOString() | date('d/m/Y') }}">
+          </div>
+      </div>
+
+        <p class="bg-info"><i class="fa fa-pencil"></i> Description du bon plan</p>
 
         <div class="form-group">
           <label for="title" class="col-sm-2 control-label">Title</label>
           <div class="col-sm-10">
-            <input type="text" name="title" value="{{ article.title }}" placeholder="Enter the title" class="form-control" id="title">
+            <input type="text" name="title" value="{{ article.title }}" placeholder="Titre de l'annonce" class="form-control" id="title">
           </div>
         </div>
 
@@ -33,20 +115,6 @@
           <label for="file" class="col-sm-2 control-label">Image</label>
           <div class="col-sm-10">
             <input type="file" name="image" class="form-control" id="file">
-          </div>
-        </div>
-
-        <input type="text" name="region" class="form-control" value="{{ article.region }}">
-
-        <div class="form-group">
-          <label for="desc" class="col-sm-2 control-label">Région</label>
-          <div class="col-sm-10">
-            <select name="region">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
           </div>
         </div>
 
@@ -58,17 +126,10 @@
         </div>
 
         <div class="form-group">
-          <label for="tags" class="col-sm-2 control-label">Catégories</label>
-          <div class="col-sm-10">
-            <input type="text" name="tags" value="{{ article.tags }}" placeholder="Enter the tags" class="form-control" id="tags">
-          </div>
-        </div>
-
-        <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" type="submit">Validez</button>
             &nbsp;
-            <a href="/articles" class="btn btn-link">Cancel</a>
+            <a href="/articles" class="btn btn-link">Annuler</a>
           </div>
         </div>
       </form>
@@ -79,4 +140,7 @@
       {% endif %}
     </div>
   </div>
+<script src="/js/bootstrap.datepicker.min.js"></script>
+<script src="/js/bootstrap.datepicker.fr.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.datepicker.min.css">
 {% endblock %}

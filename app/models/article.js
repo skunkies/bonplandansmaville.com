@@ -33,10 +33,20 @@ var setTags = function (tags) {
  */
 
 var ArticleSchema = new Schema({
+
   title: {type : String, default : '', trim : true},
-  region: {type : String, default : '', trim : true},
   body: {type : String, default : '', trim : true},
+
+  categorie: {type:String, default:'',trim:true},
+  region: {type : String, default : '', trim : true},
+  departement: {type : String, default : '', trim : true},
+  cp: {type : String, default : '', trim : true},
+  ville: {type : String, default : '', trim : true},
+  datedebut: { type: Date},
+  datefin: { type: Date },
+
   user: {type : Schema.ObjectId, ref : 'User'},
+
   comments: [{
     body: { type : String, default : '' },
     user: { type : Schema.ObjectId, ref : 'User' },
@@ -56,6 +66,32 @@ var ArticleSchema = new Schema({
 
 ArticleSchema.path('title').required(true, 'Article title cannot be blank');
 ArticleSchema.path('body').required(true, 'Article body cannot be blank');
+ArticleSchema.path('categorie').required(true, 'Categorie cannot be blank');
+ArticleSchema.path('region').required(true, 'Region cannot be blank');
+ArticleSchema.path('departement').required(true, 'Département cannot be blank');
+
+
+ArticleSchema.virtual('expirationTime').get(function(){
+
+    var diff = {};                         // Initialisation du retour
+    var tmp = this.datefin - Date.now();
+
+    tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+    diff.sec = tmp % 60;                    // Extraction du nombre de secondes
+
+    tmp = Math.floor((tmp-diff.sec)/60);    // Nombre de minutes (partie entière)
+    diff.min = tmp % 60;                    // Extraction du nombre de minutes
+
+    tmp = Math.floor((tmp-diff.min)/60);    // Nombre d'heures (entières)
+    diff.hour = tmp % 24;                   // Extraction du nombre d'heures
+
+    tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
+    diff.day = tmp;
+
+    return diff;
+  //il y a "+diff.day+" jours, "+diff.hour+" heures, "+diff.min+" minutes et "+diff.sec+" secondes"
+
+});
 
 /**
  * Pre-remove hook
@@ -73,6 +109,28 @@ ArticleSchema.pre('remove', function (next) {
   next();
 });
 
+ArticleSchema.pre('validate', function(next) {
+  aa  = new Date();
+  console.log('==========', aa);
+  console.log('-----------BEFORE ----------------------------');
+  console.log('---------------------------------- debut = ', this.datedebut);
+  console.log('---------------------------------- fin = ', this.datefin);
+  this.datedebut = new Date(this.datedebut);
+  this.datefin = new Date(this.datefin);
+
+  console.log('---------------------- AFTER ----------------------------');
+  console.log('---------------------------------- debut = ', this.datedebut );
+  console.log('---------------------------------- fin = ', this.datefin);
+  next();
+});
+
+
+ArticleSchema.pre('save', function(done) {
+  console.log('---------------------------------- SAVE ----------------------------');
+  console.log('---------------------------------- debut = ', this.datedebut);
+  console.log('---------------------------------- fin = ', this.datefin);
+  done();
+});
 /**
  * Methods
  */
@@ -164,7 +222,7 @@ ArticleSchema.statics = {
 
   load: function (id, cb) {
     this.findOne({ _id : id })
-      .populate('user', 'name email username')
+      .populate('user', ' id name email username')
       .populate('comments.user')
       .exec(cb);
   },
@@ -178,10 +236,11 @@ ArticleSchema.statics = {
    */
 
   list: function (options, cb) {
-    var criteria = options.criteria || {}
+    var criteria = options.criteria || {};
+    //console.info("GA ---------------------MODEL/ARTICLE criteria", criteria);
 
     this.find(criteria)
-      .populate('user', 'name username')
+      .populate('user', 'id name username')
       .sort({'createdAt': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)

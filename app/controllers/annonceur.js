@@ -10,7 +10,8 @@ var Article = mongoose.model('Article');
  */
 
 exports.index = function (req, res) {
-  var criteria = { region: req.params.region };
+
+  var criteria = { user: req.params.user };
   var perPage = 500;
   var page = (req.params.page > 0 ? req.params.page : 1) - 1;
   var options = {
@@ -22,11 +23,11 @@ exports.index = function (req, res) {
   Article.list(options, function(err, articles) {
     if (err) return res.render('500');
     Article.count(criteria).exec(function (err, count) {
-      console.info("GA -------------REGION-------- criteria", criteria, "count - " , count);
+      console.info("GA -------------ANNONCEUR-------- criteria", criteria, "count - " , count, articles.user);
       res.render('articles/list', {
         icon: 'fa fa-map-marker',
-        title: 'Bons plans pour la région ' ,
-        param: req.params.region,
+        title: 'Tous les Bons plans de l\'annonceur ' ,
+        param: req.params.user,
         articles: articles,
         page: page + 1,
         pages: Math.ceil(count / perPage)

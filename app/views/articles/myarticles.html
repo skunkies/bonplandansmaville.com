@@ -1,0 +1,46 @@
+    {% extends '../layouts/default.html' %}
+
+    {% block main %}
+    <h1><i class="{{ icon }}"></i>{{ title }} <span style="color:red">{{ param }}</span></h1>
+
+    {% endblock %}
+
+    {% block content %}
+    {% if (articles.length) %}
+    <div class="row">
+        {% for article in articles %}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="/img/800x600.png" alt="...">
+                <div class="caption">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.body }}</p>
+                    <p>
+                    <form action="{{ '/articles/' + article.id }}" method="post" onsubmit="return confirm('Are you sure?')">
+                        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+                        <a href="{{ '/articles/' + article._id + '/edit' }}" title="edit" class="btn btn-primary" role="button">
+                            Edit
+                        </a>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if (pages > 1) %}
+    <ul class="pagination">
+        {% autoescape false %}
+        {{ createPagination(pages, page) }}
+        {% endautoescape %}
+    </ul>
+    {% endif %}
+    {% else %}
+    <h4 class="muted">
+        No articles.&nbsp;
+        <a href="/">cherchez dans une autre région</a>
+    </h4>
+    {% endif %}
+    {% endblock %}

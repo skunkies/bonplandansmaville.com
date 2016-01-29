@@ -21,8 +21,10 @@ var oAuthTypes = [
 
 var UserSchema = new Schema({
   name: { type: String, default: '' },
+  nomcommercial: { type: String, default: '',lowercase: true },
   email: { type: String, default: '' },
   username: { type: String, default: '' },
+  role: { type: String, default: 'user' },
   provider: { type: String, default: '' },
   hashed_password: { type: String, default: '' },
   salt: { type: String, default: '' },

@@ -1,0 +1,12 @@
+
+<div class="article">
+  <h3>
+    <a href="{{ '/categories/' + categorie._id }}" title="{{ categorie.title }}">
+      <i class="{{ categorie.faicon }}"></i> {{ categorie.title|upper }}
+    </a>
+  </h3>
+  <p>{{ categorie.body }}</p>
+
+  <span class="muted">{{ categorie.createdAt.toISOString()| date('M d, Y  h:i a') }}</span>
+
+</div>

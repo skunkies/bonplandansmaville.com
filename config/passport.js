@@ -9,9 +9,9 @@ var User = mongoose.model('User');
 
 var local = require('./passport/local');
 var google = require('./passport/google');
-/*var facebook = require('./passport/facebook');
+var facebook = require('./passport/facebook');
 var twitter = require('./passport/twitter');
-var linkedin = require('./passport/linkedin');
+/*var linkedin = require('./passport/linkedin');
 var github = require('./passport/github’);*/
 
 /**
@@ -33,8 +33,8 @@ module.exports = function (passport, config) {
   // use these strategies
   passport.use(local);
   passport.use(google);
-  /*passport.use(facebook);
+  passport.use(facebook);
   passport.use(twitter);
-  passport.use(linkedin);
+   /*passport.use(linkedin);
   passport.use(github);*/
 };

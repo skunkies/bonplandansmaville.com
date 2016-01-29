@@ -23,10 +23,11 @@ module.exports = new FacebookStrategy({
     };
     User.load(options, function (err, user) {
       if (err) return done(err);
+      console.log("profile : ", profile);
       if (!user) {
         user = new User({
           name: profile.displayName,
-          email: profile.emails[0].value,
+          //email: profile.emails[0].value,
           username: profile.username,
           provider: 'facebook',
           facebook: profile._json
