@@ -21,31 +21,36 @@
 <h1><i class="{{ icon }}"></i> {{ title }} <span style="color:red">{{ param }}</span></h1>
 {% endblock %}
 
-{% block aside %}
-{% include 'aside.html' %}
-{% endblock %}
+
 
 {% block weekly %}
   {% include 'weekly.html' %}
 {% endblock %}
 
 {% block content %}
-{% if (articles.length) %}
-{% for article in articles %}
-{% include 'article.html' %}
-{% endfor %}
+<!-- categories aside bar-->
+{% block aside %}
+  {% include 'aside.html' %}
+{% endblock %}
 
-{% if (pages > 1) %}
-<ul class="pagination">
-  {% autoescape false %}
-  {{ createPagination(pages, page) }}
-  {% endautoescape %}
-</ul>
-{% endif %}
+<div id="isotope-container" class="row col-md-9">
+{% if (articles.length) %}
+  {% for article in articles %}
+    {% include 'article.html' %}
+  {% endfor %}
+
+  {% if (pages > 1) %}
+    <ul class="pagination">
+      {% autoescape false %}
+      {{ createPagination(pages, page) }}
+      {% endautoescape %}
+    </ul>
+  {% endif %}
 {% else %}
 <h4 class="muted">
   No articles.&nbsp;
   <a href="/">cherchez dans une autre région</a>
 </h4>
 {% endif %}
+  </div>
 {% endblock %}

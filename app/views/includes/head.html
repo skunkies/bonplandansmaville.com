@@ -35,3 +35,51 @@
   <![endif]-->
   <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
   <!-- <script src='/js/jquery.js'></script>-->
+<style>
+
+  .isotope-item {
+    z-index: 2;
+  }
+
+  .isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /**** Isotope CSS3 transitions ****/
+
+  .isotope,
+  .isotope .isotope-item {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+  }
+
+  .isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    transition-property: height, width;
+  }
+
+  .isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property:    -moz-transform, opacity;
+    transition-property:         transform, opacity;
+  }
+
+  /**** disabling Isotope CSS3 transitions ****/
+
+  .isotope.no-transition,
+  .isotope.no-transition .isotope-item,
+  .isotope .isotope-item.no-transition {
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    transition-duration: 0s;
+  }
+
+  /* End: Recommended Isotope styles */
+</style>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/1.4.3/packery.pkgd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>

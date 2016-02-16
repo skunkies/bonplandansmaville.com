@@ -1,5 +1,5 @@
-<div class="col-md-4 mt20" href="#">
-  <div class="product-thumb {% for tag in article.tags.split(',') %} {{ tag }} {% endfor %}">
+<div class="col-md-4 mt20 item {% for tag in article.tags.split(',') %} {{ tag }} {% endfor %}" href="#" style="">
+  <div class="product-thumb">
     <header class="product-header">
       <img src="/img/800x600.png" alt="Image Alternative text" title="{{article.title}}">
     </header>
@@ -10,9 +10,9 @@
       <p class="product-desciption">{{ article.body }}</p>
       <div class="product-meta">
         <span class="product-time"><i class="fa fa-clock-o"></i>
-          {{ article.datefin.toISOString()| date('d/m/Y  h:i a') }}
+          {{ article.datefin.toISOString()| date('d/m/Y') }}
         </span>
-        <a href="{{ '/articles/' + user._id }}"> <span class="product-price">by {{ article.user.name }}</span></a>
+        <a href="{{ '/annonceur/' + article.user._id}}"> <span class="product-price">by {{ article.user.name }}</span></a>
  <!--        <span class="product-time"><i class="fa fa-clock-o"></i>
            {{ article.expirationTime.day }} - {{ article.expirationTime.hour }}  - {{ article.expirationTime.min }} - {{ article.expirationTime.sec }}
          </span>-->
@@ -28,7 +28,8 @@
       <p class="product-location">
         <a href="{{ '/annonceur/' + article.user._id }}"> by
           {{ article.user.name || article.user.username }}
-        </a> en <a href="{{ '/region/'+ article.region }}">
+        </p>
+      <p></a> en <a href="{{ '/region/'+ article.region }}">
         <i class="fa fa-map-marker"></i> {{ article.region }} <i class="fa fa-icon"></i></a>
       </p>
     </div>
